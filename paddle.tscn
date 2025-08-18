@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://dra2imwcludka"]
+
+[ext_resource type="Script" uid="uid://uv640dk56ifx" path="res://paddle.gd" id="1_0sbc1"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_ut3sq"]
+resource_local_to_scene = true
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ut3sq"]
+resource_local_to_scene = true
+size = Vector2(10, 10)
+
+[node name="Paddle" type="Area2D"]
+script = ExtResource("1_0sbc1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(10, 10)
+texture = SubResource("CanvasTexture_ut3sq")
+centered = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(5, 5)
+shape = SubResource("RectangleShape2D_ut3sq")
