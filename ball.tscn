@@ -1,3 +1,29 @@
-[gd_scene format=3 uid="uid://b315ut83y0trh"]
+[gd_scene load_steps=5 format=3 uid="uid://b315ut83y0trh"]
+
+[ext_resource type="Script" uid="uid://gnbqdgk3l5et" path="res://ball.gd" id="1_x8fbi"]
+
+[sub_resource type="Gradient" id="Gradient_cbx31"]
+interpolation_mode = 1
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_x8fbi"]
+gradient = SubResource("Gradient_cbx31")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.894587, 0.213675)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cbx31"]
+radius = 31.0161
 
 [node name="Ball" type="Area2D"]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_x8fbi")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("GradientTexture2D_x8fbi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_cbx31")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

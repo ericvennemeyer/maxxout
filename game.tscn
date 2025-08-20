@@ -1,6 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://d1qwy02mn4l55"]
+[gd_scene load_steps=8 format=3 uid="uid://d1qwy02mn4l55"]
 
 [ext_resource type="PackedScene" uid="uid://dra2imwcludka" path="res://paddle.tscn" id="1_80nbo"]
+[ext_resource type="Script" uid="uid://tpqwpajrtqjh" path="res://game.gd" id="1_feb5d"]
+[ext_resource type="PackedScene" uid="uid://b315ut83y0trh" path="res://ball.tscn" id="2_e2o6t"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_e2o6t"]
 resource_local_to_scene = true
@@ -17,6 +19,8 @@ resource_local_to_scene = true
 size = Vector2(50, 980)
 
 [node name="Game" type="Node2D"]
+script = ExtResource("1_feb5d")
+ball = ExtResource("2_e2o6t")
 
 [node name="Paddle" parent="." instance=ExtResource("1_80nbo")]
 position = Vector2(0, 50)
