@@ -9,4 +9,4 @@ extends Node
 @export var neutral: Color = Color(0.758, 0.758, 0.758)
 
 @export_category("Movement Parameters")
-@export var ball_velocity: float = 300.0
+@export var ball_speed: float = 400.0

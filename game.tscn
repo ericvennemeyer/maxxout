@@ -23,52 +23,56 @@ script = ExtResource("1_feb5d")
 ball = ExtResource("2_e2o6t")
 
 [node name="Paddle" parent="." instance=ExtResource("1_80nbo")]
-position = Vector2(0, 50)
+position = Vector2(23, 541)
+metadata/_edit_group_ = true
 
 [node name="Sprite2D" parent="Paddle" index="0"]
 scale = Vector2(50, 980)
 texture = SubResource("CanvasTexture_e2o6t")
 
 [node name="CollisionShape2D" parent="Paddle" index="1"]
-position = Vector2(25, 490)
+position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_feb5d")
 
 [node name="Paddle2" parent="." instance=ExtResource("1_80nbo")]
-position = Vector2(1030, 50)
+position = Vector2(1056, 540)
 paddle_color = 1
+metadata/_edit_group_ = true
 
 [node name="Sprite2D" parent="Paddle2" index="0"]
 scale = Vector2(50, 980)
 texture = SubResource("CanvasTexture_80nbo")
 
 [node name="CollisionShape2D" parent="Paddle2" index="1"]
-position = Vector2(25, 490)
+position = Vector2(0, 2)
 shape = SubResource("RectangleShape2D_e2o6t")
 
 [node name="Paddle3" parent="." instance=ExtResource("1_80nbo")]
-position = Vector2(1030, 1030)
+position = Vector2(538, 1055)
 rotation = 1.5708
 paddle_color = 3
+metadata/_edit_group_ = true
 
 [node name="Sprite2D" parent="Paddle3" index="0"]
 scale = Vector2(50, 980)
 texture = SubResource("CanvasTexture_80nbo")
 
 [node name="CollisionShape2D" parent="Paddle3" index="1"]
-position = Vector2(25, 490)
+position = Vector2(1.00006, 2.32458e-05)
 shape = SubResource("RectangleShape2D_e2o6t")
 
 [node name="Paddle4" parent="." instance=ExtResource("1_80nbo")]
-position = Vector2(1030, 0)
+position = Vector2(541, 24)
 rotation = 1.5708
 paddle_color = 2
+metadata/_edit_group_ = true
 
 [node name="Sprite2D" parent="Paddle4" index="0"]
 scale = Vector2(50, 980)
 texture = SubResource("CanvasTexture_80nbo")
 
 [node name="CollisionShape2D" parent="Paddle4" index="1"]
-position = Vector2(25, 490)
+position = Vector2(0, -3.05176e-05)
 shape = SubResource("RectangleShape2D_e2o6t")
 
 [editable path="Paddle"]
