@@ -36,11 +36,13 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_area_entered(area: Area2D) -> void:
+	collided = true
+	other_area = area
+	
 	if area is Paddle:
 		print("Hit Paddle")
-		
-		collided = true
-		other_area = area
+	elif area is Block:
+		area.destroy()
 		
 		var tween = get_tree().create_tween()
 		tween.tween_property(sprite_2d, "modulate", area.sprite_2d.modulate, 0.2)

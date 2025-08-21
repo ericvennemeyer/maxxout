@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://d1qwy02mn4l55"]
+[gd_scene load_steps=9 format=3 uid="uid://d1qwy02mn4l55"]
 
 [ext_resource type="PackedScene" uid="uid://dra2imwcludka" path="res://paddle.tscn" id="1_80nbo"]
 [ext_resource type="Script" uid="uid://tpqwpajrtqjh" path="res://game.gd" id="1_feb5d"]
 [ext_resource type="PackedScene" uid="uid://b315ut83y0trh" path="res://ball.tscn" id="2_e2o6t"]
+[ext_resource type="PackedScene" uid="uid://bkwb4j6lwjh7j" path="res://block.tscn" id="4_fc0e3"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_e2o6t"]
 resource_local_to_scene = true
@@ -74,6 +75,51 @@ texture = SubResource("CanvasTexture_80nbo")
 [node name="CollisionShape2D" parent="Paddle4" index="1"]
 position = Vector2(0, -3.05176e-05)
 shape = SubResource("RectangleShape2D_e2o6t")
+
+[node name="RedBlock" parent="." instance=ExtResource("4_fc0e3")]
+position = Vector2(384, 704)
+
+[node name="RedBlock2" parent="." instance=ExtResource("4_fc0e3")]
+position = Vector2(384, 768)
+
+[node name="RedBlock3" parent="." instance=ExtResource("4_fc0e3")]
+position = Vector2(384, 832)
+
+[node name="GreenBlock" parent="." instance=ExtResource("4_fc0e3")]
+position = Vector2(448, 704)
+block_color = 1
+
+[node name="GreenBlock2" parent="." instance=ExtResource("4_fc0e3")]
+position = Vector2(512, 704)
+block_color = 1
+
+[node name="GreenBlock3" parent="." instance=ExtResource("4_fc0e3")]
+position = Vector2(576, 704)
+block_color = 1
+
+[node name="BlueBlock" parent="." instance=ExtResource("4_fc0e3")]
+position = Vector2(640, 704)
+block_color = 2
+
+[node name="BlueBlock2" parent="." instance=ExtResource("4_fc0e3")]
+position = Vector2(640, 768)
+block_color = 2
+
+[node name="BlueBlock3" parent="." instance=ExtResource("4_fc0e3")]
+position = Vector2(640, 832)
+block_color = 2
+
+[node name="YellowBlock" parent="." instance=ExtResource("4_fc0e3")]
+position = Vector2(576, 832)
+block_color = 3
+
+[node name="YellowBlock2" parent="." instance=ExtResource("4_fc0e3")]
+position = Vector2(512, 832)
+block_color = 3
+
+[node name="YellowBlock3" parent="." instance=ExtResource("4_fc0e3")]
+position = Vector2(448, 832)
+block_color = 3
 
 [editable path="Paddle"]
 [editable path="Paddle2"]
