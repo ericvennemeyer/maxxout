@@ -20,17 +20,16 @@ func _physics_process(delta: float) -> void:
 	global_position += velocity * delta
 	
 	if collided:
-		print("Collided")
 		var space_state = get_world_2d().direct_space_state
 		var query = PhysicsRayQueryParameters2D.create(global_position, other_area.global_position)
 		query.collide_with_areas = true
 		query.exclude = [self]
 		var result = space_state.intersect_ray(query)
+		#if result:
+			#print("Hit at point: ", result.position)
+			#print("Collision normal: ", result.normal)
 		if result:
-			print("Hit at point: ", result.position)
-			print("Collision normal: ", result.normal)
-		
-		velocity = velocity.bounce(result.normal)
+			velocity = velocity.bounce(result.normal)
 		
 		collided = false
 
