@@ -19,8 +19,8 @@ resource_local_to_scene = true
 resource_local_to_scene = true
 size = Vector2(50, 980)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_fc0e3"]
-size = Vector2(704, 704)
+[sub_resource type="CircleShape2D" id="CircleShape2D_fc0e3"]
+radius = 417.51
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_feb5d")
@@ -80,15 +80,14 @@ position = Vector2(0, -3.05176e-05)
 shape = SubResource("RectangleShape2D_e2o6t")
 
 [node name="Level" parent="." instance=ExtResource("4_fc0e3")]
-position = Vector2(0, 320)
 
-[node name="BallExclusionZone" type="Area2D" parent="."]
+[node name="BallStartZone" type="Area2D" parent="."]
 metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BallExclusionZone"]
-position = Vector2(544, 544)
-shape = SubResource("RectangleShape2D_fc0e3")
+[node name="CircleShape" type="CollisionShape2D" parent="BallStartZone"]
+position = Vector2(540, 540)
+shape = SubResource("CircleShape2D_fc0e3")
 disabled = true
 
 [editable path="Paddle"]

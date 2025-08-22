@@ -1,7 +1,7 @@
 class_name Ball
 extends Area2D
 
-var direction: Vector2
+var direction: Vector2 # Set by world.gd when Ball is instantiated
 var velocity: Vector2
 var collided: bool = false
 var other_area: Area2D
@@ -12,7 +12,6 @@ var other_area: Area2D
 func _ready() -> void:
 	sprite_2d.modulate = Global.neutral
 	
-	direction = Vector2.RIGHT.rotated(randf() * TAU)
 	velocity = direction * Global.ball_speed
 
 
@@ -44,4 +43,4 @@ func _on_area_entered(area: Area2D) -> void:
 		area.destroy()
 		
 		var tween = get_tree().create_tween()
-		tween.tween_property(sprite_2d, "modulate", area.sprite_2d.modulate, 0.2)
+		tween.tween_property(sprite_2d, "modulate", area.color_data, 0.2)
