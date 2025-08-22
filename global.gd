@@ -10,3 +10,6 @@ extends Node
 
 @export_category("Movement Parameters")
 @export var ball_speed: float = 400.0
+@export var max_paddle_speed: float = 90.0
+@export var paddle_acceleration: float = 30.0
+@export var paddle_friction: float = 100.0

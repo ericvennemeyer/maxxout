@@ -1,21 +1,30 @@
-[gd_scene load_steps=4 format=3 uid="uid://dra2imwcludka"]
+[gd_scene load_steps=5 format=3 uid="uid://dra2imwcludka"]
 
 [ext_resource type="Script" uid="uid://uv640dk56ifx" path="res://paddle.gd" id="1_0sbc1"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_ut3sq"]
 resource_local_to_scene = true
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ut3sq"]
-resource_local_to_scene = true
-size = Vector2(10, 10)
+[sub_resource type="CanvasTexture" id="CanvasTexture_0sbc1"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0sbc1"]
+radius = 25.0
+height = 180.0
 
 [node name="Paddle" type="Area2D"]
 collision_mask = 4
 script = ExtResource("1_0sbc1")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(10, 10)
+position = Vector2(-2.38419e-07, -2.38419e-07)
+scale = Vector2(50, 180)
 texture = SubResource("CanvasTexture_ut3sq")
 
+[node name="BlackFillSprite2D" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(-2.38419e-07, -2.38419e-07)
+scale = Vector2(44, 174)
+texture = SubResource("CanvasTexture_0sbc1")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_ut3sq")
+shape = SubResource("CapsuleShape2D_0sbc1")

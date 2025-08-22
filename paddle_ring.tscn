@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://bngv7icu5kuww"]
+
+[ext_resource type="PackedScene" uid="uid://dra2imwcludka" path="res://paddle.tscn" id="1_jp801"]
+[ext_resource type="Script" uid="uid://dcgvc0i5hwbsb" path="res://paddle_ring.gd" id="1_xui6u"]
+
+[node name="Paddle_Ring" type="Node2D"]
+script = ExtResource("1_xui6u")
+
+[node name="PaddleContainer" type="Node2D" parent="."]
+
+[node name="LeftPaddle" parent="PaddleContainer" instance=ExtResource("1_jp801")]
+position = Vector2(-490, 0)
+
+[node name="TopPaddle" parent="PaddleContainer" instance=ExtResource("1_jp801")]
+position = Vector2(0, -490)
+rotation = 1.5708
+paddle_color = 1
+
+[node name="RightPaddle" parent="PaddleContainer" instance=ExtResource("1_jp801")]
+position = Vector2(490, 0)
+paddle_color = 2
+
+[node name="BottomPaddle" parent="PaddleContainer" instance=ExtResource("1_jp801")]
+position = Vector2(0, 490)
+rotation = 1.5708
+paddle_color = 3

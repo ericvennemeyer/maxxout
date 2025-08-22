@@ -5,17 +5,13 @@
 [node name="Level" type="Node2D"]
 
 [node name="RedBlock" parent="." instance=ExtResource("1_u52ul")]
-position = Vector2(384, 448)
+position = Vector2(448, 448)
 
 [node name="RedBlock2" parent="." instance=ExtResource("1_u52ul")]
-position = Vector2(384, 512)
+position = Vector2(448, 512)
 
 [node name="RedBlock3" parent="." instance=ExtResource("1_u52ul")]
-position = Vector2(384, 576)
-
-[node name="GreenBlock" parent="." instance=ExtResource("1_u52ul")]
-position = Vector2(448, 448)
-block_color = 1
+position = Vector2(448, 576)
 
 [node name="GreenBlock2" parent="." instance=ExtResource("1_u52ul")]
 position = Vector2(512, 448)
@@ -43,8 +39,4 @@ block_color = 3
 
 [node name="YellowBlock2" parent="." instance=ExtResource("1_u52ul")]
 position = Vector2(512, 576)
-block_color = 3
-
-[node name="YellowBlock3" parent="." instance=ExtResource("1_u52ul")]
-position = Vector2(448, 576)
 block_color = 3

@@ -1,10 +1,11 @@
 extends Node2D
 
-#var viewport_size: Vector2
-#var viewport_center: Vector2
+var viewport_size: Vector2
+var viewport_center: Vector2
 
 @export var ball: PackedScene
 
+@onready var camera_2d: Camera2D = $Camera2D
 # This is the collision shape I'm using to define possible starting positions for the ball:
 @onready var circle_shape: CollisionShape2D = $BallStartZone/CircleShape
 
@@ -14,8 +15,10 @@ func _ready() -> void:
 	
 	randomize() # Seed random number for ball start pos calculation in generate_ball_start_position()
 	
-	#viewport_size = get_viewport_rect().size
-	#viewport_center = viewport_size / 2
+	viewport_size = get_viewport_rect().size
+	viewport_center = viewport_size / 2
+	
+	camera_2d.global_position = viewport_center
 	
 	var circle_center: Vector2 = circle_shape.position
 	var circle_radius: float = circle_shape.shape.radius
