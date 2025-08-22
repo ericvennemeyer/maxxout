@@ -19,6 +19,7 @@ func _ready() -> void:
 	viewport_center = viewport_size / 2
 	
 	camera_2d.global_position = viewport_center
+	circle_shape.global_position = viewport_center
 	
 	var circle_center: Vector2 = circle_shape.position
 	var circle_radius: float = circle_shape.shape.radius

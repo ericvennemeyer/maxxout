@@ -5,6 +5,7 @@ var direction: Vector2 # Set by world.gd when Ball is instantiated
 var velocity: Vector2
 var collided: bool = false
 var other_area: Area2D
+var color_data: Color
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
 
@@ -34,13 +35,15 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_area_entered(area: Area2D) -> void:
-	collided = true
 	other_area = area
 	
-	if area is Paddle:
-		print("Hit Paddle")
+	if area is Paddle and color_data == area.color_data:
+		collided = true
 	elif area is Block:
+		collided = true
+		
 		area.destroy()
 		
+		color_data = area.color_data
 		var tween = get_tree().create_tween()
-		tween.tween_property(sprite_2d, "modulate", area.color_data, 0.2)
+		tween.tween_property(sprite_2d, "modulate", color_data, 0.2)

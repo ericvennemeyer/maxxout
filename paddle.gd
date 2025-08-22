@@ -1,6 +1,7 @@
 class_name Paddle
 extends Area2D
 
+var color_data: Color
 
 enum PaddleColor {RED, GREEN, BLUE, YELLOW}
 @export var paddle_color: PaddleColor
@@ -15,10 +16,14 @@ func _ready() -> void:
 func set_paddle_color() -> void:
 	match paddle_color:
 		PaddleColor.RED:
-			sprite_2d.modulate = Global.red
+			color_data = Global.red
+			sprite_2d.modulate = color_data
 		PaddleColor.GREEN:
-			sprite_2d.modulate = Global.green
+			color_data = Global.green
+			sprite_2d.modulate = color_data
 		PaddleColor.BLUE:
-			sprite_2d.modulate = Global.blue
+			color_data = Global.blue
+			sprite_2d.modulate = color_data
 		PaddleColor.YELLOW:
-			sprite_2d.modulate = Global.yellow
+			color_data = Global.yellow
+			sprite_2d.modulate = color_data
