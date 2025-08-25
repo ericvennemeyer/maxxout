@@ -2,23 +2,34 @@ class_name Ball
 extends Area2D
 
 
+signal offscreen(ball)
+
 var direction: Vector2 # Set by world.gd when Ball is instantiated
 var velocity: Vector2
 var collided: bool = false
 var other_area: Area2D
 var color_data: Color
 
+@export var active: bool = false
+
 @onready var sprite_2d: Sprite2D = $Sprite2D
+@onready var visible_on_screen_notifier_2d: VisibleOnScreenNotifier2D = $VisibleOnScreenNotifier2D
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 
 func _ready() -> void:
 	sprite_2d.modulate = Global.neutral
 	
 	velocity = direction * Global.ball_speed
+	
+	visible_on_screen_notifier_2d.screen_exited.connect(_on_screen_exited)
+	
+	animation_player.play("respawn")
 
 
 func _physics_process(delta: float) -> void:
-	global_position += velocity * delta
+	if active:
+		global_position += velocity * delta
 	
 	if collided:
 		var space_state = get_world_2d().direct_space_state
@@ -48,3 +59,7 @@ func _on_area_entered(area: Area2D) -> void:
 		tween.tween_property(sprite_2d, "modulate", color_data, 0.2)
 		
 		area.destroy()
+
+
+func _on_screen_exited() -> void:
+	offscreen.emit(self)
