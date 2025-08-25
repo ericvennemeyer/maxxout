@@ -7,6 +7,7 @@ var viewport_center: Vector2
 
 @onready var camera_2d: Camera2D = $Camera2D
 # This is the collision shape I'm using to define possible starting positions for the ball:
+@onready var level: Node2D = $Level
 @onready var circle_shape: CollisionShape2D = $BallStartZone/CircleShape
 
 
@@ -19,6 +20,7 @@ func _ready() -> void:
 	viewport_center = viewport_size / 2
 	
 	camera_2d.global_position = viewport_center
+	level.global_position = viewport_center
 	circle_shape.global_position = viewport_center
 	
 	var circle_center: Vector2 = circle_shape.position
