@@ -9,14 +9,91 @@ script = ExtResource("1_vonw3")
 [node name="RedBlock" parent="." instance=ExtResource("1_u52ul")]
 position = Vector2(-32, 32)
 
-[node name="GreenBlock" parent="." instance=ExtResource("1_u52ul")]
+[node name="RedBlock2" parent="." instance=ExtResource("1_u52ul")]
 position = Vector2(-32, -32)
+
+[node name="RedBlock3" parent="." instance=ExtResource("1_u52ul")]
+position = Vector2(32, -32)
+
+[node name="RedBlock4" parent="." instance=ExtResource("1_u52ul")]
+position = Vector2(32, 32)
+
+[node name="GreenBlock" parent="." instance=ExtResource("1_u52ul")]
+position = Vector2(-32, -96)
+block_color = 1
+
+[node name="GreenBlock2" parent="." instance=ExtResource("1_u52ul")]
+position = Vector2(32, -96)
+block_color = 1
+
+[node name="GreenBlock3" parent="." instance=ExtResource("1_u52ul")]
+position = Vector2(96, -32)
+block_color = 1
+
+[node name="GreenBlock4" parent="." instance=ExtResource("1_u52ul")]
+position = Vector2(96, 32)
+block_color = 1
+
+[node name="GreenBlock5" parent="." instance=ExtResource("1_u52ul")]
+position = Vector2(32, 96)
+block_color = 1
+
+[node name="GreenBlock6" parent="." instance=ExtResource("1_u52ul")]
+position = Vector2(-32, 96)
+block_color = 1
+
+[node name="GreenBlock7" parent="." instance=ExtResource("1_u52ul")]
+position = Vector2(-96, 32)
+block_color = 1
+
+[node name="GreenBlock8" parent="." instance=ExtResource("1_u52ul")]
+position = Vector2(-96, -32)
 block_color = 1
 
 [node name="BlueBlock" parent="." instance=ExtResource("1_u52ul")]
-position = Vector2(32, -32)
+position = Vector2(-96, -96)
+block_color = 2
+
+[node name="BlueBlock2" parent="." instance=ExtResource("1_u52ul")]
+position = Vector2(96, -96)
+block_color = 2
+
+[node name="BlueBlock3" parent="." instance=ExtResource("1_u52ul")]
+position = Vector2(96, 96)
+block_color = 2
+
+[node name="BlueBlock4" parent="." instance=ExtResource("1_u52ul")]
+position = Vector2(-96, 96)
 block_color = 2
 
 [node name="YellowBlock" parent="." instance=ExtResource("1_u52ul")]
-position = Vector2(32, 32)
+position = Vector2(-32, -160)
+block_color = 3
+
+[node name="YellowBlock2" parent="." instance=ExtResource("1_u52ul")]
+position = Vector2(32, -160)
+block_color = 3
+
+[node name="YellowBlock3" parent="." instance=ExtResource("1_u52ul")]
+position = Vector2(160, -32)
+block_color = 3
+
+[node name="YellowBlock4" parent="." instance=ExtResource("1_u52ul")]
+position = Vector2(160, 32)
+block_color = 3
+
+[node name="YellowBlock5" parent="." instance=ExtResource("1_u52ul")]
+position = Vector2(32, 160)
+block_color = 3
+
+[node name="YellowBlock6" parent="." instance=ExtResource("1_u52ul")]
+position = Vector2(-32, 160)
+block_color = 3
+
+[node name="YellowBlock7" parent="." instance=ExtResource("1_u52ul")]
+position = Vector2(-160, 32)
+block_color = 3
+
+[node name="YellowBlock8" parent="." instance=ExtResource("1_u52ul")]
+position = Vector2(-160, -32)
 block_color = 3
