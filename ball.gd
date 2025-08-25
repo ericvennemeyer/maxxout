@@ -38,6 +38,7 @@ func _physics_process(delta: float) -> void:
 		query.exclude = [self]
 		var result = space_state.intersect_ray(query)
 		#if result:
+			#print(result)
 			#print("Hit at point: ", result.position)
 			#print("Collision normal: ", result.normal)
 		if result:
@@ -51,7 +52,7 @@ func _on_area_entered(area: Area2D) -> void:
 	
 	if area is Paddle and color_data == area.color_data:
 		collided = true
-	elif area is Block:
+	elif area is Block and collided == false:
 		collided = true
 		
 		color_data = area.color_data
