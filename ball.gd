@@ -1,6 +1,7 @@
 class_name Ball
 extends Area2D
 
+
 var direction: Vector2 # Set by world.gd when Ball is instantiated
 var velocity: Vector2
 var collided: bool = false

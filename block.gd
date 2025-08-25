@@ -2,6 +2,8 @@ class_name Block
 extends Area2D
 
 
+signal destroyed(block: Block)
+
 enum BlockColor {RED, GREEN, BLUE, YELLOW}
 @export var block_color: BlockColor
 
@@ -37,6 +39,7 @@ func destroy() -> void:
 	
 	block_color += 1
 	if block_color >= BlockColor.size():
+		destroyed.emit(self)
 		tween.tween_callback(queue_free)
 	else:
 		set_block_color()
