@@ -11,10 +11,10 @@ var color_data: Color
 
 
 func _ready() -> void:
-	set_paddle_color()
+	set_block_color()
 
 
-func set_paddle_color() -> void:
+func set_block_color() -> void:
 	match block_color:
 		BlockColor.RED:
 			color_data = Global.red
@@ -34,4 +34,10 @@ func destroy() -> void:
 	var tween = get_tree().create_tween()
 	tween.set_trans(Tween.TRANS_SPRING)
 	tween.tween_property(self, "scale", scale * 1.2, 0.2)
-	tween.tween_callback(queue_free)
+	
+	block_color += 1
+	if block_color >= BlockColor.size():
+		tween.tween_callback(queue_free)
+	else:
+		set_block_color()
+		tween.tween_property(self, "scale", Vector2(1.0, 1.0), 0.1)

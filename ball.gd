@@ -42,8 +42,8 @@ func _on_area_entered(area: Area2D) -> void:
 	elif area is Block:
 		collided = true
 		
-		area.destroy()
-		
 		color_data = area.color_data
 		var tween = get_tree().create_tween()
 		tween.tween_property(sprite_2d, "modulate", color_data, 0.2)
+		
+		area.destroy()
