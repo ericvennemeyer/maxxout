@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://b315ut83y0trh"]
+[gd_scene load_steps=11 format=3 uid="uid://b315ut83y0trh"]
 
 [ext_resource type="Script" uid="uid://gnbqdgk3l5et" path="res://ball.gd" id="1_x8fbi"]
 
@@ -103,6 +103,10 @@ _data = {
 &"respawn": SubResource("Animation_x8fbi")
 }
 
+[sub_resource type="Curve" id="Curve_x8fbi"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -0.0617973, 0.0, 0, 0]
+point_count = 2
+
 [sub_resource type="Gradient" id="Gradient_41u45"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
@@ -133,14 +137,15 @@ libraries = {
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 z_index = -1
 emitting = false
-amount = 1400
-lifetime = 3.0
+amount = 500
+lifetime = 2.0
 emission_shape = 1
-emission_sphere_radius = 13.0
+emission_sphere_radius = 5.0
 direction = Vector2(0, 0)
 gravity = Vector2(0, 0)
 scale_amount_min = 5.0
-scale_amount_max = 6.0
+scale_amount_max = 20.0
+scale_amount_curve = SubResource("Curve_x8fbi")
 color_ramp = SubResource("Gradient_41u45")
 color_initial_ramp = SubResource("Gradient_x8fbi")
 
