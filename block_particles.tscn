@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://b354edox50mgj"]
+
+[sub_resource type="Curve" id="Curve_im0tn"]
+_data = [Vector2(0.004914, 0.00857222), 0.0, 0.0, 0, 0, Vector2(0.243243, 1), 0.0, 0.0, 0, 0, Vector2(0.395577, 1), 0.0, 0.0, 0, 0, Vector2(0.997543, 0.000886798), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[node name="BlockParticles" type="CPUParticles2D"]
+z_index = 1
+emitting = false
+amount = 50
+lifetime = 0.25
+one_shot = true
+explosiveness = 0.5
+randomness = 1.0
+emission_shape = 3
+emission_rect_extents = Vector2(40, 40)
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 100.0
+linear_accel_min = 50.0
+linear_accel_max = 100.0
+scale_amount_min = 5.0
+scale_amount_max = 15.0
+scale_amount_curve = SubResource("Curve_im0tn")
