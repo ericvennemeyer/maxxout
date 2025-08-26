@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://d1qwy02mn4l55"]
+[gd_scene load_steps=11 format=3 uid="uid://d1qwy02mn4l55"]
 
 [ext_resource type="Script" uid="uid://tpqwpajrtqjh" path="res://game.gd" id="1_feb5d"]
 [ext_resource type="PackedScene" uid="uid://b315ut83y0trh" path="res://ball.tscn" id="2_e2o6t"]
 [ext_resource type="FontFile" uid="uid://bqe1c00m6qdta" path="res://Assets/Kenney Future.ttf" id="3_7jktm"]
 [ext_resource type="PackedScene" uid="uid://bngv7icu5kuww" path="res://paddle_ring.tscn" id="3_fc0e3"]
 [ext_resource type="PackedScene" uid="uid://b3g1utgqt470d" path="res://level.tscn" id="4_fc0e3"]
+[ext_resource type="Shader" uid="uid://o7ykh8md17q2" path="res://starfield.gdshader" id="6_ryrav"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fc0e3"]
 radius = 417.51
@@ -14,6 +15,12 @@ background_mode = 3
 glow_enabled = true
 glow_intensity = 1.0
 glow_bloom = 0.5
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ryrav"]
+shader = ExtResource("6_ryrav")
+shader_parameter/VIEWPORT_SIZE = Vector2(1280, 720)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_ryrav"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_feb5d")
@@ -101,3 +108,10 @@ disabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_7jktm")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -10
+material = SubResource("ShaderMaterial_ryrav")
+position = Vector2(540, 540)
+scale = Vector2(1080, 1080)
+texture = SubResource("CanvasTexture_ryrav")
