@@ -15,10 +15,12 @@ var color_data: Color
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var visible_on_screen_notifier_2d: VisibleOnScreenNotifier2D = $VisibleOnScreenNotifier2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var cpu_particles_2d: CPUParticles2D = $CPUParticles2D
 
 
 func _ready() -> void:
 	sprite_2d.modulate = Global.neutral
+	cpu_particles_2d.color_initial_ramp.set_color(0, Global.neutral)
 	
 	velocity = direction * Global.ball_speed
 	
@@ -57,7 +59,10 @@ func _on_area_entered(area: Area2D) -> void:
 		
 		color_data = area.color_data
 		var tween = get_tree().create_tween()
+		tween.set_parallel()
 		tween.tween_property(sprite_2d, "modulate", color_data, 0.2)
+		#tween.tween_property(cpu_particles_2d, "color", color_data, 0.2)
+		cpu_particles_2d.color_initial_ramp.set_color(0, color_data)
 		
 		area.destroy()
 
