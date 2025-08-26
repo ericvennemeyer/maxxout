@@ -57,14 +57,18 @@ func _on_area_entered(area: Area2D) -> void:
 	elif area is Block and collided == false:
 		collided = true
 		
+		var previous_color_data = color_data
 		color_data = area.color_data
 		var tween = get_tree().create_tween()
 		tween.set_parallel()
 		tween.tween_property(sprite_2d, "modulate", color_data, 0.2)
-		#tween.tween_property(cpu_particles_2d, "color", color_data, 0.2)
-		cpu_particles_2d.color_initial_ramp.set_color(0, color_data)
+		tween.tween_method(shift_particles_color, previous_color_data, color_data, 0.2)
 		
 		area.destroy()
+
+
+func shift_particles_color(color: Color) -> void:
+	cpu_particles_2d.color_initial_ramp.set_color(0, color)
 
 
 func _on_screen_exited() -> void:
