@@ -4,6 +4,7 @@
 
 [node name="Global" type="Node"]
 script = ExtResource("1_6q3x5")
+neutral = Color(0.98, 0.98, 0.98, 1)
 ball_speed = 250.0
 max_paddle_speed = 75.0
 paddle_acceleration = 10.0
