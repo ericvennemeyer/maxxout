@@ -42,6 +42,7 @@ func destroy() -> void:
 	
 	block_color += 1
 	if block_color >= BlockColor.size():
+		Global.play_sfx("block_destroy")
 		destroyed.emit(self)
 		tween.tween_callback(queue_free)
 	else:

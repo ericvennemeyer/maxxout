@@ -1,6 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://fi88r0cbfw74"]
+[gd_scene load_steps=8 format=3 uid="uid://fi88r0cbfw74"]
 
 [ext_resource type="Script" uid="uid://b0idqov64ly32" path="res://global.gd" id="1_6q3x5"]
+[ext_resource type="AudioStream" uid="uid://cbadty4o5advk" path="res://Assets/SFX/794125__cvltiv8r__kicks-bass-impacts-subs-by-cvltiv8r-34.wav" id="2_2wtbm"]
+[ext_resource type="AudioStream" uid="uid://406ceatyapg3" path="res://Assets/SFX/Droid Killer Phrase 002.wav" id="2_qxp0b"]
+[ext_resource type="AudioStream" uid="uid://cq87xdnvmhy8e" path="res://Assets/SFX/706204__xkeril__nice-anime-sword-hit.wav" id="3_8tbuy"]
+[ext_resource type="AudioStream" uid="uid://bmkmncojk2o6t" path="res://Assets/SFX/Arcane Light Energy 01.wav" id="4_hhif3"]
+[ext_resource type="AudioStream" uid="uid://b3ihsleajbt1k" path="res://Assets/SFX/435195__lilmati__game-over-01-lost-consciousness.wav" id="6_74nqk"]
+[ext_resource type="AudioStream" uid="uid://dau2d4uk55dpi" path="res://Assets/SFX/456967__funwithsound__success-resolution-video-game-sound-effect-strings.mp3" id="6_ol57v"]
 
 [node name="Global" type="Node"]
 script = ExtResource("1_6q3x5")
@@ -8,3 +14,9 @@ neutral = Color(0.98, 0.98, 0.98, 1)
 ball_speed = 250.0
 max_paddle_speed = 75.0
 paddle_acceleration = 10.0
+paddle_hit = ExtResource("2_2wtbm")
+block_hit = ExtResource("3_8tbuy")
+block_destroy = ExtResource("4_hhif3")
+ball_offscreen = ExtResource("2_qxp0b")
+level_complete = ExtResource("6_ol57v")
+game_over = ExtResource("6_74nqk")

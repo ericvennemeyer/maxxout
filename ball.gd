@@ -53,8 +53,10 @@ func _on_area_entered(area: Area2D) -> void:
 	other_area = area
 	
 	if area is Paddle and color_data == area.color_data:
+		Global.play_sfx("paddle_hit")
 		collided = true
 	elif area is Block and collided == false:
+		Global.play_sfx("block_hit")
 		collided = true
 		
 		var previous_color_data = color_data

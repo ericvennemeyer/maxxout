@@ -19,6 +19,8 @@ var current_ball: Ball
 @onready var level: Node2D = $Level
 @onready var circle_shape: CollisionShape2D = $BallStartZone/CircleShape
 
+@onready var music_player: AudioStreamPlayer = $MusicPlayer
+
 
 func _ready() -> void:
 	RenderingServer.set_default_clear_color(Color.BLACK)
@@ -76,6 +78,7 @@ func generate_ball_start_position(circle_center: Vector2, circle_radius: float) 
 
 
 func _on_ball_left_screen(ball: Ball) -> void:
+	Global.play_sfx("ball_offscreen")
 	ball.queue_free()
 	await get_tree().create_timer(1.0).timeout
 	if remaining_balls > 0:
@@ -85,9 +88,15 @@ func _on_ball_left_screen(ball: Ball) -> void:
 
 
 func game_over() -> void:
+	var tween = create_tween()
+	tween.tween_property(music_player, "volume_db", -80.0, 1.0)
+	Global.play_sfx("game_over")
 	game_over_label.visible = true
 
 
 func _on_level_complete() -> void:
+	var tween = create_tween()
+	tween.tween_property(music_player, "volume_db", -80.0, 1.0)
+	Global.play_sfx("level_complete")
 	current_ball.queue_free()
 	win_label.visible = true

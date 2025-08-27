@@ -1,6 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://b315ut83y0trh"]
+[gd_scene load_steps=13 format=3 uid="uid://b315ut83y0trh"]
 
 [ext_resource type="Script" uid="uid://gnbqdgk3l5et" path="res://ball.gd" id="1_x8fbi"]
+[ext_resource type="AudioStream" uid="uid://b14pdmbumyvbd" path="res://Assets/SFX/Tones_Bleeps_30.wav" id="2_ktgx5"]
+[ext_resource type="AudioStream" uid="uid://ch5so52pp5g43" path="res://Assets/SFX/UI Message Appear 02.wav" id="3_hgol0"]
 
 [sub_resource type="Gradient" id="Gradient_cbx31"]
 interpolation_mode = 1
@@ -55,6 +57,30 @@ tracks/2/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CountdownBleep01:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CountdownBleep02:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_x8fbi"]
 resource_name = "respawn"
@@ -92,6 +118,30 @@ tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0.00569564, 1.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CountdownBleep01:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.6, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [false, true, true, true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CountdownBleep02:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1.4),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
@@ -148,5 +198,13 @@ scale_amount_max = 20.0
 scale_amount_curve = SubResource("Curve_x8fbi")
 color_ramp = SubResource("Gradient_41u45")
 color_initial_ramp = SubResource("Gradient_x8fbi")
+
+[node name="CountdownBleep01" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_ktgx5")
+volume_db = -6.0
+
+[node name="CountdownBleep02" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_hgol0")
+volume_db = -6.0
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
