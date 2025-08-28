@@ -1,11 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://d1qwy02mn4l55"]
+[gd_scene load_steps=14 format=3 uid="uid://d1qwy02mn4l55"]
 
 [ext_resource type="Script" uid="uid://tpqwpajrtqjh" path="res://game.gd" id="1_feb5d"]
 [ext_resource type="PackedScene" uid="uid://b315ut83y0trh" path="res://ball.tscn" id="2_e2o6t"]
 [ext_resource type="FontFile" uid="uid://bqe1c00m6qdta" path="res://Assets/Kenney Future.ttf" id="3_7jktm"]
 [ext_resource type="PackedScene" uid="uid://bngv7icu5kuww" path="res://paddle_ring.tscn" id="3_fc0e3"]
 [ext_resource type="PackedScene" uid="uid://b3g1utgqt470d" path="res://level.tscn" id="4_fc0e3"]
+[ext_resource type="PackedScene" uid="uid://dkxase5uoaofy" path="res://main_menu.tscn" id="4_j5wjh"]
 [ext_resource type="AudioStream" uid="uid://cw5qdpc5x6meb" path="res://Assets/Music/Ludum Dare 38 - Track 3.wav" id="6_ryrav"]
+[ext_resource type="PackedScene" uid="uid://bq0c62mrjd8w4" path="res://starfield.tscn" id="7_eow3j"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fc0e3"]
 radius = 417.51
@@ -16,9 +18,125 @@ glow_enabled = true
 glow_intensity = 1.0
 glow_bloom = 0.5
 
+[sub_resource type="Animation" id="Animation_eow3j"]
+resource_name = "intro_sequence"
+length = 4.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Starfield:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.4, 1.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Paddle_Ring:scale")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4, 2.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(2, 2), Vector2(2, 2), Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Paddle_Ring:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.2, 2.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Level")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(2.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"animate_in"
+}]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"start_new_ball_sequence"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_j5wjh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Starfield:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Paddle_Ring:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Paddle_Ring:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_j5wjh"]
+_data = {
+&"RESET": SubResource("Animation_j5wjh"),
+&"intro_sequence": SubResource("Animation_eow3j")
+}
+
 [node name="Game" type="Node2D"]
 script = ExtResource("1_feb5d")
 ball = ExtResource("2_e2o6t")
+
+[node name="MainMenu" parent="." instance=ExtResource("4_j5wjh")]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -39,8 +157,8 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 8
 theme_override_fonts/font = ExtResource("3_7jktm")
-theme_override_font_sizes/font_size = 64
-text = "3 BALLS REMAINING"
+theme_override_font_sizes/font_size = 80
+text = "BALL 01"
 horizontal_alignment = 1
 
 [node name="WinLabel" type="Label" parent="CanvasLayer"]
@@ -62,6 +180,8 @@ theme_override_constants/outline_size = 8
 theme_override_fonts/font = ExtResource("3_7jktm")
 theme_override_font_sizes/font_size = 64
 text = "LEVEL COMPLETE"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="GameOverLabel" type="Label" parent="CanvasLayer"]
 visible = false
@@ -82,11 +202,14 @@ theme_override_constants/outline_size = 8
 theme_override_fonts/font = ExtResource("3_7jktm")
 theme_override_font_sizes/font_size = 96
 text = "GAME OVER"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Camera2D" type="Camera2D" parent="."]
 process_callback = 0
 
 [node name="Paddle_Ring" parent="." instance=ExtResource("3_fc0e3")]
+modulate = Color(1, 1, 1, 0)
 
 [node name="Level" parent="." instance=ExtResource("4_fc0e3")]
 position = Vector2(0, 64)
@@ -107,3 +230,11 @@ environment = SubResource("Environment_7jktm")
 stream = ExtResource("6_ryrav")
 volume_db = -12.0
 autoplay = true
+
+[node name="Starfield" parent="." instance=ExtResource("7_eow3j")]
+modulate = Color(1, 1, 1, 0)
+
+[node name="IntroSequencePlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_j5wjh")
+}

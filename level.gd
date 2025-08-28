@@ -15,7 +15,7 @@ func _ready() -> void:
 		block.scale = Vector2.ZERO
 		block.modulate = Color(1.0, 1.0, 1.0, 0.0)
 	
-	animate_in()
+	#animate_in()
 
 
 func animate_in() -> void:

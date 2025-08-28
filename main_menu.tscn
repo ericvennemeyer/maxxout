@@ -1,0 +1,227 @@
+[gd_scene load_steps=13 format=3 uid="uid://dkxase5uoaofy"]
+
+[ext_resource type="FontFile" uid="uid://bqe1c00m6qdta" path="res://Assets/Kenney Future.ttf" id="1_06t4h"]
+[ext_resource type="Script" uid="uid://do5wtob6adtek" path="res://main_menu.gd" id="1_7vrkn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_06t4h"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qe12f"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fu7sn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7vrkn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8qtwp"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jix8l"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dy7ct"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_glbon"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0o4t1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nlkkf"]
+
+[node name="MainMenu" type="CanvasLayer"]
+script = ExtResource("1_7vrkn")
+
+[node name="IntroScreen" type="MarginContainer" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 35
+
+[node name="VBoxContainer" type="VBoxContainer" parent="IntroScreen"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="IntroScreen/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="MA" type="Label" parent="IntroScreen/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 6
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("1_06t4h")
+theme_override_font_sizes/font_size = 128
+text = "MA"
+
+[node name="X" type="Label" parent="IntroScreen/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("1_06t4h")
+theme_override_font_sizes/font_size = 128
+text = "X"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="X2" type="Label" parent="IntroScreen/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("1_06t4h")
+theme_override_font_sizes/font_size = 128
+text = "X"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="OUT" type="Label" parent="IntroScreen/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 6
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("1_06t4h")
+theme_override_font_sizes/font_size = 128
+text = "OUT"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Spacer" type="Control" parent="IntroScreen/VBoxContainer"]
+custom_minimum_size = Vector2(0, 75)
+layout_mode = 2
+
+[node name="StartButton" type="Button" parent="IntroScreen/VBoxContainer"]
+custom_minimum_size = Vector2(350, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0.66, 0.66, 0.66, 1)
+theme_override_colors/font_focus_color = Color(0.196078, 0.576471, 0.866667, 1)
+theme_override_colors/font_pressed_color = Color(0.821911, 1.85303e-06, 7.70092e-07, 1)
+theme_override_fonts/font = ExtResource("1_06t4h")
+theme_override_font_sizes/font_size = 64
+theme_override_styles/focus = SubResource("StyleBoxEmpty_06t4h")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_qe12f")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_fu7sn")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_7vrkn")
+text = "START"
+
+[node name="InstructionsButton" type="Button" parent="IntroScreen/VBoxContainer"]
+custom_minimum_size = Vector2(350, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0.66, 0.66, 0.66, 1)
+theme_override_colors/font_focus_color = Color(0.196078, 0.576471, 0.866667, 1)
+theme_override_colors/font_pressed_color = Color(0.821911, 1.85303e-06, 7.70092e-07, 1)
+theme_override_fonts/font = ExtResource("1_06t4h")
+theme_override_font_sizes/font_size = 64
+theme_override_styles/focus = SubResource("StyleBoxEmpty_06t4h")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_8qtwp")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_jix8l")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_7vrkn")
+text = "HOW TO PLAY"
+
+[node name="QuitButton" type="Button" parent="IntroScreen/VBoxContainer"]
+custom_minimum_size = Vector2(350, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0.66, 0.66, 0.66, 1)
+theme_override_colors/font_focus_color = Color(0.196078, 0.576471, 0.866667, 1)
+theme_override_colors/font_pressed_color = Color(0.821911, 1.85303e-06, 7.70092e-07, 1)
+theme_override_fonts/font = ExtResource("1_06t4h")
+theme_override_font_sizes/font_size = 64
+theme_override_styles/focus = SubResource("StyleBoxEmpty_06t4h")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_dy7ct")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_glbon")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_7vrkn")
+text = "QUIT"
+
+[node name="Spacer2" type="Control" parent="IntroScreen/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="InstructionsScreen" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="InstructionsScreen"]
+layout_mode = 2
+
+[node name="Spacer" type="Control" parent="InstructionsScreen/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="Title" type="Label" parent="InstructionsScreen/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("1_06t4h")
+theme_override_font_sizes/font_size = 64
+text = "HOW TO PLAY"
+
+[node name="Spacer2" type="Control" parent="InstructionsScreen/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="Instructions" type="Label" parent="InstructionsScreen/VBoxContainer"]
+custom_minimum_size = Vector2(800, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("1_06t4h")
+theme_override_font_sizes/font_size = 32
+text = "USE A/D OR LEFT/RIGHT ARROW TO ROTATE THE PADDLES.
+
+WHEN THE BALL HITS A BLOCK, IT CHANGES TO THAT BLOCK'S COLOR.
+
+YOU CAN ONLY HIT THE BALL WITH A PADDLE OF THE MATCHING COLOR.
+
+BLOCKS WILL SHIFT COLOR FROM 
+RED -> GREEN -> BLUE -> YELLOW BEFORE FINALLY BEING DESTROYED.
+
+DESTROY ALL THE BLOCKS.
+
+GOOD LUCK!"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Spacer3" type="Control" parent="InstructionsScreen/VBoxContainer"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+
+[node name="BackButton" type="Button" parent="InstructionsScreen/VBoxContainer"]
+custom_minimum_size = Vector2(350, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0.66, 0.66, 0.66, 1)
+theme_override_colors/font_focus_color = Color(0.194178, 0.578367, 0.868377, 1)
+theme_override_colors/font_pressed_color = Color(0.821911, 1.85303e-06, 7.70092e-07, 1)
+theme_override_fonts/font = ExtResource("1_06t4h")
+theme_override_font_sizes/font_size = 64
+theme_override_styles/focus = SubResource("StyleBoxEmpty_06t4h")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_0o4t1")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_nlkkf")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_7vrkn")
+text = "BACK"
+
+[connection signal="pressed" from="IntroScreen/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="IntroScreen/VBoxContainer/InstructionsButton" to="." method="_on_instructions_button_pressed"]
+[connection signal="pressed" from="IntroScreen/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="InstructionsScreen/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]

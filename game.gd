@@ -5,10 +5,13 @@ var viewport_center: Vector2
 var circle_center: Vector2
 var circle_radius: float
 
-var remaining_balls: int = 3
+var total_balls: int = 3
+var played_balls: int = 0
 var current_ball: Ball
 
 @export var ball: PackedScene
+
+@onready var main_menu: CanvasLayer = $MainMenu
 
 @onready var balls_remaining_label: Label = $CanvasLayer/BallsRemainingLabel
 @onready var win_label: Label = $CanvasLayer/WinLabel
@@ -16,10 +19,12 @@ var current_ball: Ball
 
 @onready var camera_2d: Camera2D = $Camera2D
 # This is the collision shape I'm using to define possible starting positions for the ball:
+@onready var paddle_ring: Node2D = $Paddle_Ring
 @onready var level: Node2D = $Level
 @onready var circle_shape: CollisionShape2D = $BallStartZone/CircleShape
-
 @onready var music_player: AudioStreamPlayer = $MusicPlayer
+@onready var starfield: CPUParticles2D = $Starfield
+@onready var intro_sequence_player: AnimationPlayer = $IntroSequencePlayer
 
 
 func _ready() -> void:
@@ -31,6 +36,10 @@ func _ready() -> void:
 	win_label.visible = false
 	game_over_label.visible = false
 	
+	main_menu.start_game.connect(func():
+		main_menu.queue_free()
+		intro_sequence_player.play("intro_sequence")
+		)
 	level.level_complete.connect(_on_level_complete)
 	
 	viewport_size = get_viewport_rect().size
@@ -39,16 +48,16 @@ func _ready() -> void:
 	camera_2d.global_position = viewport_center
 	level.global_position = viewport_center
 	circle_shape.global_position = viewport_center
+	starfield.global_position = viewport_center
 	
 	circle_center = circle_shape.position
 	circle_radius = circle_shape.shape.radius
-	
-	start_new_ball_sequence()
 
 
 func start_new_ball_sequence() -> void:
-	if remaining_balls > 1:
-		balls_remaining_label.text = str(remaining_balls) + " BALLS REMAINING"
+	played_balls += 1
+	if played_balls < total_balls:
+		balls_remaining_label.text = "BALL 0" + str(played_balls)
 	else:
 		balls_remaining_label.text = "FINAL BALL"
 	balls_remaining_label.visible = true
@@ -58,7 +67,6 @@ func start_new_ball_sequence() -> void:
 
 
 func create_new_ball(ball_start_position: Vector2, circle_center: Vector2) -> void:
-	remaining_balls -= 1
 	var new_ball = ball.instantiate()
 	current_ball = new_ball
 	new_ball.offscreen.connect(_on_ball_left_screen)
@@ -81,7 +89,7 @@ func _on_ball_left_screen(ball: Ball) -> void:
 	Global.play_sfx("ball_offscreen")
 	ball.queue_free()
 	await get_tree().create_timer(1.0).timeout
-	if remaining_balls > 0:
+	if played_balls < total_balls:
 		start_new_ball_sequence()
 	else:
 		game_over()
@@ -100,3 +108,9 @@ func _on_level_complete() -> void:
 	Global.play_sfx("level_complete")
 	current_ball.queue_free()
 	win_label.visible = true
+
+
+func restart_game() -> void:
+	played_balls = 0
+	paddle_ring.rotation_degrees = 0.0
+	start_new_ball_sequence()
