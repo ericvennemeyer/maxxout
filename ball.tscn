@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://b315ut83y0trh"]
+[gd_scene load_steps=15 format=3 uid="uid://b315ut83y0trh"]
 
 [ext_resource type="Script" uid="uid://gnbqdgk3l5et" path="res://ball.gd" id="1_x8fbi"]
 [ext_resource type="AudioStream" uid="uid://b14pdmbumyvbd" path="res://Assets/SFX/Tones_Bleeps_30.wav" id="2_ktgx5"]
@@ -31,7 +31,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [false]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -43,7 +43,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [false]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -164,13 +164,20 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 offsets = PackedFloat32Array(0)
 colors = PackedColorArray(1, 1, 1, 1)
 
+[sub_resource type="Curve" id="Curve_ktgx5"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.118421, 1), 0.0, 0.0, 0, 0, Vector2(0.997368, 0.00222933), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_hgol0"]
+colors = PackedColorArray(0.73, 0.73, 0.73, 1, 1, 1, 1, 0)
+
 [node name="Ball" type="Area2D"]
 collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_x8fbi")
-active = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 texture = SubResource("GradientTexture2D_x8fbi")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -185,6 +192,7 @@ libraries = {
 }
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+visible = false
 z_index = -1
 emitting = false
 amount = 500
@@ -198,6 +206,23 @@ scale_amount_max = 20.0
 scale_amount_curve = SubResource("Curve_x8fbi")
 color_ramp = SubResource("Gradient_41u45")
 color_initial_ramp = SubResource("Gradient_x8fbi")
+
+[node name="HitParticles" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 200
+lifetime = 0.75
+one_shot = true
+explosiveness = 1.0
+emission_shape = 1
+emission_sphere_radius = 5.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 20.0
+initial_velocity_max = 250.0
+scale_amount_min = 5.0
+scale_amount_max = 15.0
+scale_amount_curve = SubResource("Curve_ktgx5")
+color_ramp = SubResource("Gradient_hgol0")
 
 [node name="CountdownBleep01" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_ktgx5")

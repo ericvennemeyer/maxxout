@@ -19,6 +19,7 @@ var color_data: Color
 @onready var visible_on_screen_notifier_2d: VisibleOnScreenNotifier2D = $VisibleOnScreenNotifier2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var cpu_particles_2d: CPUParticles2D = $CPUParticles2D
+@onready var hit_particles: CPUParticles2D = $HitParticles
 
 
 func _ready() -> void:
@@ -57,6 +58,7 @@ func _on_area_entered(area: Area2D) -> void:
 		
 		animate_ball_pop()
 		area.animate_paddle_pop()
+		hit_particles.emitting = true
 	
 	elif area is Block and collided == false:
 		Global.play_sfx("block_hit")
@@ -64,6 +66,8 @@ func _on_area_entered(area: Area2D) -> void:
 		
 		var previous_color_data = color_data
 		color_data = area.color_data
+		set_hit_particles_color()
+		
 		var tween = get_tree().create_tween()
 		tween.set_parallel()
 		tween.tween_property(sprite_2d, "modulate", color_data, 0.2)
@@ -74,6 +78,10 @@ func _on_area_entered(area: Area2D) -> void:
 
 func shift_particles_color(color: Color) -> void:
 	cpu_particles_2d.color_initial_ramp.set_color(0, color)
+
+
+func set_hit_particles_color() -> void:
+	hit_particles.color = color_data
 
 
 func animate_ball_pop() -> void:
