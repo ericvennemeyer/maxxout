@@ -1,6 +1,7 @@
 extends Node2D
 
 
+signal block_destroyed
 signal level_complete
 
 var block_array: Array
@@ -31,6 +32,7 @@ func animate_in() -> void:
 
 
 func _on_block_destroyed(block: Block) -> void:
+	block_destroyed.emit()
 	block_array.erase(block)
 	if block_array.size() <= 0:
 		print("Level Complete")

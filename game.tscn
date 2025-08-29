@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://d1qwy02mn4l55"]
+[gd_scene load_steps=19 format=3 uid="uid://d1qwy02mn4l55"]
 
 [ext_resource type="Script" uid="uid://tpqwpajrtqjh" path="res://game.gd" id="1_feb5d"]
 [ext_resource type="PackedScene" uid="uid://b315ut83y0trh" path="res://ball.tscn" id="2_e2o6t"]
@@ -6,8 +6,17 @@
 [ext_resource type="PackedScene" uid="uid://bngv7icu5kuww" path="res://paddle_ring.tscn" id="3_fc0e3"]
 [ext_resource type="PackedScene" uid="uid://b3g1utgqt470d" path="res://level.tscn" id="4_fc0e3"]
 [ext_resource type="PackedScene" uid="uid://dkxase5uoaofy" path="res://main_menu.tscn" id="4_j5wjh"]
+[ext_resource type="Script" uid="uid://bjdbs63v18iin" path="res://camera_2d.gd" id="5_vef74"]
 [ext_resource type="AudioStream" uid="uid://cw5qdpc5x6meb" path="res://Assets/Music/Ludum Dare 38 - Track 3.wav" id="6_ryrav"]
 [ext_resource type="PackedScene" uid="uid://bq0c62mrjd8w4" path="res://starfield.tscn" id="7_eow3j"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vef74"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hve3p"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mfdv2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_iotsf"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fc0e3"]
 radius = 417.51
@@ -106,24 +115,10 @@ tracks/2/keys = {
 tracks/3/type = "method"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Level")
+tracks/3/path = NodePath(".")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(2.3),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"animate_in"
-}]
-}
-tracks/4/type = "method"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath(".")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
 "times": PackedFloat32Array(4),
 "transitions": PackedFloat32Array(1),
 "values": [{
@@ -131,17 +126,31 @@ tracks/4/keys = {
 "method": &"start_new_ball_sequence"
 }]
 }
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Paddle_Ring:rotation")
-tracks/5/interp = 2
-tracks/5/loop_wrap = true
-tracks/5/keys = {
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Paddle_Ring:rotation")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
 "times": PackedFloat32Array(0, 0.4, 2.6),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [-1.5708, -1.5708, 0.0]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(2.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"instantiate_level"
+}]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_j5wjh"]
@@ -158,22 +167,27 @@ glow_bloom = 0.53
 [node name="Game" type="Node2D"]
 script = ExtResource("1_feb5d")
 ball = ExtResource("2_e2o6t")
+level = ExtResource("4_fc0e3")
 
 [node name="MainMenu" parent="." instance=ExtResource("4_j5wjh")]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="BallsRemainingLabel" type="Label" parent="CanvasLayer"]
-visible = false
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -362.0
-offset_top = -36.0
-offset_right = 362.0
-offset_bottom = 36.0
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="CanvasLayer/MarginContainer"]
+layout_mode = 2
+
+[node name="BallsRemainingLabel" type="Label" parent="CanvasLayer/MarginContainer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -183,20 +197,11 @@ theme_override_fonts/font = ExtResource("3_7jktm")
 theme_override_font_sizes/font_size = 80
 text = "BALL 01"
 horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="WinLabel" type="Label" parent="CanvasLayer"]
+[node name="WinLabel" type="Label" parent="CanvasLayer/MarginContainer"]
 visible = false
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -0.5
-offset_top = -11.5
-offset_right = 0.5
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 8
@@ -206,19 +211,14 @@ text = "LEVEL COMPLETE"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="GameOverLabel" type="Label" parent="CanvasLayer"]
+[node name="GameOverContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer"]
 visible = false
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -0.5
-offset_top = -11.5
-offset_right = 0.5
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="GameOverLabel" type="Label" parent="CanvasLayer/MarginContainer/GameOverContainer"]
+layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 8
@@ -228,14 +228,32 @@ text = "GAME OVER"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Spacer" type="Control" parent="CanvasLayer/MarginContainer/GameOverContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="PlayAgainButton" type="Button" parent="CanvasLayer/MarginContainer/GameOverContainer"]
+custom_minimum_size = Vector2(350, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0.66, 0.66, 0.66, 1)
+theme_override_colors/font_focus_color = Color(0.196078, 0.576471, 0.866667, 1)
+theme_override_colors/font_pressed_color = Color(0.821911, 1.85303e-06, 7.70092e-07, 1)
+theme_override_fonts/font = ExtResource("3_7jktm")
+theme_override_font_sizes/font_size = 64
+theme_override_styles/focus = SubResource("StyleBoxEmpty_vef74")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_hve3p")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_mfdv2")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_iotsf")
+text = "PLAY AGAIN"
+
 [node name="Camera2D" type="Camera2D" parent="."]
 process_callback = 0
+script = ExtResource("5_vef74")
 
 [node name="Paddle_Ring" parent="." instance=ExtResource("3_fc0e3")]
 modulate = Color(1, 1, 1, 0)
-
-[node name="Level" parent="." instance=ExtResource("4_fc0e3")]
-position = Vector2(0, 64)
 
 [node name="BallStartZone" type="Area2D" parent="."]
 metadata/_edit_lock_ = true
@@ -266,3 +284,5 @@ libraries = {
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_7jktm")
+
+[connection signal="pressed" from="CanvasLayer/MarginContainer/GameOverContainer/PlayAgainButton" to="." method="_on_play_again_button_pressed"]

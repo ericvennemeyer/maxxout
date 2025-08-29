@@ -7,6 +7,8 @@ extends Node
 @export var blue: Color = Color(0.0, 0.783, 1.0)
 @export var yellow: Color = Color(1.0, 0.967, 0.0)
 @export var neutral: Color = Color(0.758, 0.758, 0.758)
+@export var faded_in: Color = Color(1.0, 1.0, 1.0, 1.0)
+@export var faded_out: Color = Color(1.0, 1.0, 1.0, 0.0)
 
 @export_category("Movement Parameters")
 @export var ball_speed: float = 400.0
