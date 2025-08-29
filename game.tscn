@@ -255,6 +255,22 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_mfdv2")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_iotsf")
 text = "PLAY AGAIN"
 
+[node name="QuitButton" type="Button" parent="CanvasLayer/MarginContainer/GameOverContainer/GameOverVBox"]
+custom_minimum_size = Vector2(350, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0.66, 0.66, 0.66, 1)
+theme_override_colors/font_focus_color = Color(0.196078, 0.576471, 0.866667, 1)
+theme_override_colors/font_pressed_color = Color(0.821911, 1.85303e-06, 7.70092e-07, 1)
+theme_override_fonts/font = ExtResource("3_7jktm")
+theme_override_font_sizes/font_size = 64
+theme_override_styles/focus = SubResource("StyleBoxEmpty_vef74")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_hve3p")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_mfdv2")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_iotsf")
+text = "QUIT"
+
 [node name="Camera2D" type="Camera2D" parent="."]
 process_callback = 0
 script = ExtResource("5_vef74")
@@ -288,3 +304,4 @@ libraries = {
 environment = SubResource("Environment_7jktm")
 
 [connection signal="pressed" from="CanvasLayer/MarginContainer/GameOverContainer/GameOverVBox/PlayAgainButton" to="." method="_on_play_again_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer/GameOverContainer/GameOverVBox/QuitButton" to="." method="_on_quit_button_pressed"]

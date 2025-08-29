@@ -178,3 +178,7 @@ func restart_game() -> void:
 
 func _on_play_again_button_pressed() -> void:
 	restart_game()
+
+
+func _on_quit_button_pressed() -> void:
+	get_tree().quit()
