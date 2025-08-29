@@ -2,7 +2,6 @@ class_name Ball
 extends Area2D
 
 
-#signal hit_paddle
 signal offscreen(ball)
 
 var direction: Vector2 # Set by world.gd when Ball is instantiated
@@ -12,6 +11,9 @@ var other_area: Area2D
 var color_data: Color
 
 @export var active: bool = false
+
+@export var pop_scale: Vector2 = Vector2(2.0, 2.0)
+@export var pop_duration: float = 0.3
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var visible_on_screen_notifier_2d: VisibleOnScreenNotifier2D = $VisibleOnScreenNotifier2D
@@ -40,10 +42,6 @@ func _physics_process(delta: float) -> void:
 		query.collide_with_areas = true
 		query.exclude = [self]
 		var result = space_state.intersect_ray(query)
-		#if result:
-			#print(result)
-			#print("Hit at point: ", result.position)
-			#print("Collision normal: ", result.normal)
 		if result:
 			velocity = velocity.bounce(result.normal)
 		
@@ -54,9 +52,12 @@ func _on_area_entered(area: Area2D) -> void:
 	other_area = area
 	
 	if area is Paddle and color_data == area.color_data:
-		#hit_paddle.emit()
 		Global.play_sfx("paddle_hit")
 		collided = true
+		
+		animate_ball_pop()
+		area.animate_paddle_pop()
+	
 	elif area is Block and collided == false:
 		Global.play_sfx("block_hit")
 		collided = true
@@ -73,6 +74,15 @@ func _on_area_entered(area: Area2D) -> void:
 
 func shift_particles_color(color: Color) -> void:
 	cpu_particles_2d.color_initial_ramp.set_color(0, color)
+
+
+func animate_ball_pop() -> void:
+	var default_scale: Vector2 = scale
+	var tween = create_tween()
+	tween.set_ease(Tween.EASE_OUT_IN)
+	tween.set_trans(Tween.TRANS_LINEAR)
+	tween.tween_property(self, "scale", pop_scale, pop_duration / 2)
+	tween.tween_property(self, "scale", default_scale, pop_duration / 3)
 
 
 func _on_screen_exited() -> void:
