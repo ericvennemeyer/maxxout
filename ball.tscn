@@ -192,7 +192,6 @@ libraries = {
 }
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
-visible = false
 z_index = -1
 emitting = false
 amount = 500
