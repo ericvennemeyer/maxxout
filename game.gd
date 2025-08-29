@@ -7,6 +7,7 @@ var circle_radius: float
 
 var current_level
 var default_music_volume: float
+var default_starfield_speed_scale: float
 
 var total_balls: int = 3
 var played_balls: int = 0
@@ -43,13 +44,16 @@ func _ready() -> void:
 	balls_remaining_label.visible = false
 	win_label.visible = false
 	game_over_container.visible = false
-	#game_over_label.visible = false
 	
 	play_again_button.disabled = true
 	
 	main_menu.start_game.connect(func():
 		main_menu.queue_free()
 		intro_sequence_player.play("intro_sequence")
+		var tween = create_tween()
+		tween.set_ease(Tween.EASE_OUT)
+		tween.set_trans(Tween.TRANS_CIRC)
+		tween.tween_property(starfield, "speed_scale", default_starfield_speed_scale, 2.0)
 		)
 	
 	viewport_size = get_viewport_rect().size
@@ -58,6 +62,9 @@ func _ready() -> void:
 	camera_2d.global_position = viewport_center
 	circle_shape.global_position = viewport_center
 	starfield.global_position = viewport_center
+	
+	default_starfield_speed_scale = starfield.speed_scale
+	starfield.speed_scale = 5.0
 	
 	circle_center = circle_shape.position
 	circle_radius = circle_shape.shape.radius
