@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://d1qwy02mn4l55"]
+[gd_scene load_steps=20 format=3 uid="uid://d1qwy02mn4l55"]
 
 [ext_resource type="Script" uid="uid://tpqwpajrtqjh" path="res://game.gd" id="1_feb5d"]
 [ext_resource type="PackedScene" uid="uid://b315ut83y0trh" path="res://ball.tscn" id="2_e2o6t"]
@@ -9,6 +9,9 @@
 [ext_resource type="Script" uid="uid://bjdbs63v18iin" path="res://camera_2d.gd" id="5_vef74"]
 [ext_resource type="AudioStream" uid="uid://cw5qdpc5x6meb" path="res://Assets/Music/Ludum Dare 38 - Track 3.wav" id="6_ryrav"]
 [ext_resource type="PackedScene" uid="uid://bq0c62mrjd8w4" path="res://starfield.tscn" id="7_eow3j"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vef74"]
+bg_color = Color(0, 0, 0, 0.764706)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vef74"]
 
@@ -184,6 +187,7 @@ grow_vertical = 2
 layout_mode = 2
 
 [node name="BallsRemainingLabel" type="Label" parent="CanvasLayer/MarginContainer/Control"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -211,13 +215,16 @@ text = "LEVEL COMPLETE"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="GameOverContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer"]
-visible = false
+[node name="GameOverContainer" type="PanelContainer" parent="CanvasLayer/MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_vef74")
+
+[node name="GameOverVBox" type="VBoxContainer" parent="CanvasLayer/MarginContainer/GameOverContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="GameOverLabel" type="Label" parent="CanvasLayer/MarginContainer/GameOverContainer"]
+[node name="GameOverLabel" type="Label" parent="CanvasLayer/MarginContainer/GameOverContainer/GameOverVBox"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
@@ -228,11 +235,11 @@ text = "GAME OVER"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Spacer" type="Control" parent="CanvasLayer/MarginContainer/GameOverContainer"]
+[node name="Spacer" type="Control" parent="CanvasLayer/MarginContainer/GameOverContainer/GameOverVBox"]
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 
-[node name="PlayAgainButton" type="Button" parent="CanvasLayer/MarginContainer/GameOverContainer"]
+[node name="PlayAgainButton" type="Button" parent="CanvasLayer/MarginContainer/GameOverContainer/GameOverVBox"]
 custom_minimum_size = Vector2(350, 100)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -269,11 +276,6 @@ stream = ExtResource("6_ryrav")
 volume_db = -16.0
 autoplay = true
 
-[node name="MusicPlayer2" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("6_ryrav")
-volume_db = -25.0
-autoplay = true
-
 [node name="Starfield" parent="." instance=ExtResource("7_eow3j")]
 modulate = Color(1, 1, 1, 0)
 
@@ -285,4 +287,4 @@ libraries = {
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_7jktm")
 
-[connection signal="pressed" from="CanvasLayer/MarginContainer/GameOverContainer/PlayAgainButton" to="." method="_on_play_again_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer/GameOverContainer/GameOverVBox/PlayAgainButton" to="." method="_on_play_again_button_pressed"]

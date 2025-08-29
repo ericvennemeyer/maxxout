@@ -6,6 +6,7 @@ var circle_center: Vector2
 var circle_radius: float
 
 var current_level
+var default_music_volume: float
 
 var total_balls: int = 3
 var played_balls: int = 0
@@ -28,14 +29,16 @@ var current_ball: Ball
 @onready var starfield: CPUParticles2D = $Starfield
 @onready var intro_sequence_player: AnimationPlayer = $IntroSequencePlayer
 
-@onready var game_over_container: VBoxContainer = $CanvasLayer/MarginContainer/GameOverContainer
-@onready var play_again_button: Button = $CanvasLayer/MarginContainer/GameOverContainer/PlayAgainButton
+@onready var game_over_container: PanelContainer = $CanvasLayer/MarginContainer/GameOverContainer
+@onready var play_again_button: Button = $CanvasLayer/MarginContainer/GameOverContainer/GameOverVBox/PlayAgainButton
 
 
 func _ready() -> void:
 	RenderingServer.set_default_clear_color(Color.BLACK)
 	
 	randomize() # Seed random number for ball start pos calculation in generate_ball_start_position()
+	
+	default_music_volume = music_player.volume_db
 	
 	balls_remaining_label.visible = false
 	win_label.visible = false
@@ -70,6 +73,7 @@ func instantiate_level() -> void:
 
 
 func animate_screen_text(text_node: Control) -> void:
+	text_node.visible = true
 	text_node.modulate = Global.faded_out
 	var tween = create_tween()
 	tween.set_ease(Tween.EASE_OUT)
@@ -77,7 +81,9 @@ func animate_screen_text(text_node: Control) -> void:
 	tween.set_parallel()
 	tween.tween_property(text_node, "position", Vector2(position.x, position.y - 275), 1.5)
 	tween.tween_property(text_node, "modulate", Global.faded_in, 1.0)
-	tween.chain().tween_property(text_node, "modulate", Global.faded_out, 0.3).set_delay(0.5)
+	tween.chain().tween_property(text_node, "modulate", Global.faded_out, 0.5).set_delay(0.5)
+	await tween.finished
+	text_node.visible = false
 
 
 func start_new_ball_sequence() -> void:
@@ -86,11 +92,9 @@ func start_new_ball_sequence() -> void:
 		balls_remaining_label.text = "BALL 0" + str(played_balls)
 	else:
 		balls_remaining_label.text = "FINAL BALL"
-	balls_remaining_label.visible = true
 	var initial_label_position = balls_remaining_label.position
 	animate_screen_text(balls_remaining_label)
-	await get_tree().create_timer(2.0).timeout
-	balls_remaining_label.visible = false
+	await get_tree().create_timer(2.5).timeout
 	balls_remaining_label.position = initial_label_position
 	create_new_ball(generate_ball_start_position(circle_center, circle_radius), circle_center)
 
@@ -130,13 +134,16 @@ func _on_block_destroyed() -> void:
 
 
 func game_over() -> void:
-	var tween = create_tween()
-	tween.tween_property(music_player, "volume_db", -80.0, 1.0)
-	Global.play_sfx("game_over")
-	#game_over_label.visible = true
 	game_over_container.visible = true
+	game_over_container.modulate = Global.faded_out
 	play_again_button.disabled = false
 	play_again_button.grab_focus()
+	
+	var tween = create_tween()
+	tween.set_parallel()
+	tween.tween_property(music_player, "volume_db", -80.0, 1.0)
+	tween.tween_property(game_over_container, "modulate", Global.faded_in, 0.5)
+	Global.play_sfx("game_over")
 
 
 func _on_level_complete() -> void:
@@ -145,6 +152,7 @@ func _on_level_complete() -> void:
 	Global.play_sfx("level_complete")
 	current_ball.queue_free()
 	win_label.visible = true
+	animate_screen_text(win_label)
 
 
 func restart_game() -> void:
@@ -153,6 +161,8 @@ func restart_game() -> void:
 	
 	played_balls = 0
 	paddle_ring.rotation_degrees = 0.0
+	music_player.volume_db = default_music_volume
+	
 	current_level.queue_free()
 	instantiate_level()
 	await get_tree().create_timer(1.5).timeout
