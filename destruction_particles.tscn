@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://c1yu0rynhlbmk"]
+
+[sub_resource type="Curve" id="Curve_cchhg"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.118421, 1), 0.0, 0.0, 0, 0, Vector2(0.997368, 0.00222933), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_he0gv"]
+colors = PackedColorArray(0.79, 0.79, 0.79, 1, 1, 1, 1, 0)
+
+[node name="DestructionParticles" type="CPUParticles2D"]
+emitting = false
+amount = 500
+one_shot = true
+explosiveness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 20.0
+initial_velocity_max = 500.0
+scale_amount_min = 2.0
+scale_amount_max = 10.0
+scale_amount_curve = SubResource("Curve_cchhg")
+color_ramp = SubResource("Gradient_he0gv")
