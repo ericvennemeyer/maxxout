@@ -5,7 +5,7 @@ var color_data: Color
 
 enum PaddleColor {RED, GREEN, BLUE, YELLOW}
 @export var paddle_color: PaddleColor
-@export var pop_scale: Vector2 = Vector2(1.3, 1.2)
+@export var pop_scale: Vector2 = Vector2(1.5, 1.3)
 @export var pop_duration: float = 0.25
 
 @onready var sprite_2d: Sprite2D = $Sprite2D

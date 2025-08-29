@@ -15,6 +15,7 @@ neutral = Color(0.98, 0.98, 0.98, 1)
 ball_speed = 250.0
 max_paddle_speed = 75.0
 paddle_acceleration = 10.0
+paddle_friction = 80.0
 paddle_hit = ExtResource("2_2wtbm")
 block_hit = ExtResource("3_8tbuy")
 block_destroy = ExtResource("4_hhif3")

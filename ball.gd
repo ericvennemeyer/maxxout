@@ -1,7 +1,7 @@
 class_name Ball
 extends Area2D
 
-
+signal hit_paddle
 signal offscreen(ball)
 
 var direction: Vector2 # Set by world.gd when Ball is instantiated
@@ -55,6 +55,7 @@ func _on_area_entered(area: Area2D) -> void:
 	if area is Paddle and color_data == area.color_data:
 		Global.play_sfx("paddle_hit")
 		collided = true
+		hit_paddle.emit()
 		
 		animate_ball_pop()
 		area.animate_paddle_pop()

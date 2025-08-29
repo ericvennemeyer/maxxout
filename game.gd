@@ -109,6 +109,9 @@ func start_new_ball_sequence() -> void:
 func create_new_ball(ball_start_position: Vector2, circle_center: Vector2) -> void:
 	var new_ball = ball.instantiate()
 	current_ball = new_ball
+	new_ball.hit_paddle.connect(func():
+		camera_2d.apply_noise_shake(2.0, 2.0, 7.0)
+		)
 	new_ball.offscreen.connect(_on_ball_left_screen)
 	new_ball.global_position = ball_start_position
 	# Make sure ball is moving toward center of playfield at start:
