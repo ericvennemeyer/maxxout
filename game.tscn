@@ -188,7 +188,6 @@ grow_vertical = 2
 layout_mode = 2
 
 [node name="BallsRemainingLabel" type="Label" parent="CanvasLayer/MarginContainer/Control"]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -204,9 +203,16 @@ text = "BALL 01"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="WinLabel" type="Label" parent="CanvasLayer/MarginContainer"]
-visible = false
+[node name="Control2" type="Control" parent="CanvasLayer/MarginContainer"]
 layout_mode = 2
+
+[node name="WinLabel" type="Label" parent="CanvasLayer/MarginContainer/Control2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 8

@@ -19,7 +19,7 @@ var current_ball: Ball
 @onready var main_menu: CanvasLayer = $MainMenu
 
 @onready var balls_remaining_label: Label = $CanvasLayer/MarginContainer/Control/BallsRemainingLabel
-@onready var win_label: Label = $CanvasLayer/MarginContainer/WinLabel
+@onready var win_label: Label = $CanvasLayer/MarginContainer/Control2/WinLabel
 #@onready var game_over_label: Label = $CanvasLayer/GameOverLabel
 
 @onready var camera_2d: Camera2D = $Camera2D

@@ -1,0 +1,113 @@
+[gd_scene load_steps=3 format=3 uid="uid://bwecl72sqhh56"]
+
+[ext_resource type="FontFile" uid="uid://bqe1c00m6qdta" path="res://Assets/Kenney Future.ttf" id="1_fcgxq"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_3ljjv"]
+
+[node name="Thumbnail" type="Node2D"]
+
+[node name="BlackBG" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+scale = Vector2(630, 500)
+texture = SubResource("CanvasTexture_3ljjv")
+centered = false
+
+[node name="Label5" type="Label" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 52.0
+offset_top = 166.0
+offset_right = 635.0
+offset_bottom = 274.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 0.968627, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("1_fcgxq")
+theme_override_font_sizes/font_size = 96
+text = "MAXXOUT"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label4" type="Label" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 47.0
+offset_top = 170.0
+offset_right = 630.0
+offset_bottom = 278.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0.784314, 1, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("1_fcgxq")
+theme_override_font_sizes/font_size = 96
+text = "MAXXOUT"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label3" type="Label" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 41.0
+offset_top = 174.0
+offset_right = 624.0
+offset_bottom = 282.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0.113725, 0.772549, 0.294118, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("1_fcgxq")
+theme_override_font_sizes/font_size = 96
+text = "MAXXOUT"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 35.0
+offset_top = 179.0
+offset_right = 618.0
+offset_bottom = 287.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0.984314, 0, 0.32549, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("1_fcgxq")
+theme_override_font_sizes/font_size = 96
+text = "MAXXOUT"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 27.0
+offset_top = 185.0
+offset_right = 610.0
+offset_bottom = 293.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0.9, 0.9, 0.9, 1)
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("1_fcgxq")
+theme_override_font_sizes/font_size = 96
+text = "MAXXOUT"
+horizontal_alignment = 1
+vertical_alignment = 1
